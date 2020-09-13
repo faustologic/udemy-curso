@@ -11,13 +11,24 @@ class Hello extends Component {
 
 class Text extends Component {
   render() {
-    const textoSegunBool = this.props.boolean ? "Es cierto" : "Falso";
+    
+    const {
+      isActived,
+      arrayOfNumbers,
+      multiply,
+      objectWithInfo
+    } = this.props 
+
+    const textoSegunBool = isActived ? "On" : "Off";
+    const mappedNumbers = arrayOfNumbers.map(multiply);
+
+   
+
     return (
       <div>
-        <p>{this.props.text}</p>
-        <p>{this.props.number}</p>
-        <p>{textoSegunBool}</p>
         <p>{this.props.arrayOfNumbers.join(", ")}</p>
+        <p>{mappedNumbers.join(", ")}</p>
+        <p>{this.props.objectWithInfo.key}</p>
       </div>
     )
   }
@@ -37,9 +48,9 @@ function App() {
         />
         <Text 
           arrayOfNumbers = {[4,6,7,8,3,1]}
+          objectWithInfo={{ key: " first value", key: "Fausto" }}
+          multiply={ number => number * 4}
           boolean
-          text="Texto en String"
-          number={3}
         />
       </header>
     </div>
